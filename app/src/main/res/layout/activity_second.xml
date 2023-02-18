@@ -7,32 +7,38 @@
     android:paddingRight="16dp">
 
     <EditText
-        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Reminder" />
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:hint="To" />
 
-    <Spinner
-        android:id="@+id/dates"
-        android:layout_width="0dp"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/times" />
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="50dp"
+        android:hint="Subject" />
 
-    <Spinner
-        android:id="@id/times"
-        android:layout_width="96dp"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:layout_alignParentRight="true" />
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="97dp"
+        android:hint="Message" />
 
     <Button
         android:id="@+id/donebutton"
-        android:layout_width="96dp"
+        android:layout_width="112dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/times"
-        android:layout_alignParentRight="true"
-        android:backgroundTint="#000000"
-        android:text="Done" />
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="270dp"
+        android:layout_marginBottom="19dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="button" />
+
 </RelativeLayout>
