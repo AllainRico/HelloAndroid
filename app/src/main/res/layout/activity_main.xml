@@ -2,17 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B3B1B1"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical" >
+    android:paddingRight="16dp">
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="To" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Subject" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,5 +29,6 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
+        android:backgroundTint="#000000"
         android:text="Send" />
 </LinearLayout>
