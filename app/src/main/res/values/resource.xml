@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="planets_array">
+    <string-array name="spinner_array">
         <item>A</item>
         <item>B</item>
         <item>C</item>
+    </string-array>
+
+    <string-array name="array_technology">
+        <item>AA</item>
+        <item>BB</item>
+        <item>CC</item>
     </string-array>
 </resources>
