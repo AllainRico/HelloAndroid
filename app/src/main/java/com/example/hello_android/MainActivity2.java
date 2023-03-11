@@ -16,6 +16,8 @@ public class MainActivity2 extends AppCompatActivity {
         secondfragment = (Button) findViewById(R.id.secondfragment);
     }
 
+    firstfragment.setOnclickListener()
+
 
 
 
