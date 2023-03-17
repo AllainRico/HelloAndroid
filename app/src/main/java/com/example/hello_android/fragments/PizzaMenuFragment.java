@@ -31,5 +31,35 @@ public class PizzaMenuFragment extends Fragment {
         // Inflate the xml file for the fragment
         return inflater.inflate(R.layout.activity_pizza_menu_fragment, parent, false);
     }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
 
+        ListView lvItems = (ListView) view.findViewById(R.id.lvItems);
+        lvItems.setAdapter(itemsAdapter);
+
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listener.onPizzaItemSelected(position);
+            }
+        });
+    }
+
+    private OnItemSelectedListener listener;
+
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof OnItemSelectedListener){
+            this.listener = (OnItemSelectedListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement PizzaMenuFragment.OnItemSelectedListener");
+        }
+    }
+    public interface OnItemSelectedListener {
+        void onPizzaItemSelected(int position);
+    }
 }
