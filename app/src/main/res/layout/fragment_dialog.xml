@@ -10,7 +10,7 @@
         android:layout_width="300dp"
         android:layout_height="4400dp"
         android:background="#1D9"
-        app:circularflow_radiusInDP="10dp">
+        app:circularflow_radiusInDP="100000dp">
 
 
         <TextView

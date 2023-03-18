@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,7 +20,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         actionBar.setTitle("Actionbar Title!");
         actionBar.setSubtitle("subtitle!");
-        actionBar.setIcon(R.mipmap.ic_launcher);
+
+        actionBar.setIcon(R.drawable.ic_launcher_background);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
     }
