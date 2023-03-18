@@ -21,9 +21,9 @@ public class MainActivity2 extends AppCompatActivity {
         actionBar.setTitle("Actionbar Title!");
         actionBar.setSubtitle("subtitle!");
 
-        actionBar.setIcon(R.drawable.refresh_icon);
+        actionBar.setIcon(android.R.drawable.btn_star);
         actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
     }
 
     @Override
