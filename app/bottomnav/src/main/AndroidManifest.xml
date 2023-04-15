@@ -8,6 +8,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hello_Android">
         <activity
+            android:name=".second_activity"
+            android:exported="false" />
+        <activity
             android:name=".bottomnav"
             android:exported="true"
             android:label="@string/app_name">
