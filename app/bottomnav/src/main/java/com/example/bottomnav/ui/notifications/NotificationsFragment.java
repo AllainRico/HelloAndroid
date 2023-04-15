@@ -1,7 +1,10 @@
 package com.example.bottomnav.ui.notifications;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.example.bottomnav.databinding.FragmentNotificationsBinding;
 public class NotificationsFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
+    private TextView textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -27,14 +31,58 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-       // final TextView textView = binding.textNotifications;
-       // notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
+        textView = binding.textNotifications;
         final Button checkStatus = binding.batteryHealthButton;
+        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
+        checkStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().registerReceiver(broadcastreceiver, intentFilter);
+            }
+        });
 
         return root;
     }
+
+    private BroadcastReceiver broadcastreceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int deviceHealth = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0);
+
+            if(deviceHealth == BatteryManager.BATTERY_HEALTH_GOOD)
+            {
+                textView.setText("currentBatteryHealth" + " = GOOD");
+            }
+
+            if(deviceHealth == BatteryManager.BATTERY_HEALTH_COLD)
+            {
+                textView.setText("currentBatteryHealth" + " = COLD");
+            }
+
+            if(deviceHealth == BatteryManager.BATTERY_HEALTH_DEAD)
+            {
+                textView.setText("currentBatteryHealth" + " = DEAD");
+            }
+
+            if(deviceHealth == BatteryManager.BATTERY_HEALTH_OVERHEAT)
+            {
+                textView.setText("currentBatteryHealth" + " = OVERHEAT");
+            }
+
+            if(deviceHealth == BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE)
+            {
+                textView.setText("currentBatteryHealth" + " = OVER VOLTAGE");
+            }
+
+            if(deviceHealth == BatteryManager.BATTERY_HEALTH_UNKNOWN)
+            {
+                textView.setText("currentBatteryHealth" + " = HEALTH UNKNOWN");
+            }
+        }
+    };
 
     @Override
     public void onDestroyView() {
