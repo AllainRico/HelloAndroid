@@ -1,9 +1,12 @@
 package com.example.bottomnav.ui.notifications;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,8 +27,12 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+       // final TextView textView = binding.textNotifications;
+       // notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        final Button checkStatus = binding.batteryHealthButton;
+
+
         return root;
     }
 
