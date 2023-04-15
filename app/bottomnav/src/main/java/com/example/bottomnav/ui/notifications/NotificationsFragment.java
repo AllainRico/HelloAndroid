@@ -54,33 +54,39 @@ public class NotificationsFragment extends Fragment {
 
             if(deviceHealth == BatteryManager.BATTERY_HEALTH_GOOD)
             {
-                textView.setText("currentBatteryHealth" + " = GOOD");
+                textView.setText("current Battery Health" + " = GOOD");
             }
 
             if(deviceHealth == BatteryManager.BATTERY_HEALTH_COLD)
             {
-                textView.setText("currentBatteryHealth" + " = COLD");
+                textView.setText("current Battery Health" + " = COLD");
             }
 
             if(deviceHealth == BatteryManager.BATTERY_HEALTH_DEAD)
             {
-                textView.setText("currentBatteryHealth" + " = DEAD");
+                textView.setText("current Battery Health" + " = DEAD");
             }
 
             if(deviceHealth == BatteryManager.BATTERY_HEALTH_OVERHEAT)
             {
-                textView.setText("currentBatteryHealth" + " = OVERHEAT");
+                textView.setText("current Battery Health" + " = OVERHEAT");
             }
 
             if(deviceHealth == BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE)
             {
-                textView.setText("currentBatteryHealth" + " = OVER VOLTAGE");
+                textView.setText("current Battery Health" + " = OVER VOLTAGE");
             }
 
             if(deviceHealth == BatteryManager.BATTERY_HEALTH_UNKNOWN)
             {
-                textView.setText("currentBatteryHealth" + " = HEALTH UNKNOWN");
+                textView.setText("current Battery Health" + " = HEALTH UNKNOWN");
             }
+
+            if(deviceHealth == BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE)
+            {
+                textView.setText("current Battery Health" + " = FAILED");
+            }
+
         }
     };
 
