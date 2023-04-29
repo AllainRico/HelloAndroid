@@ -2,33 +2,93 @@ package com.example.hello_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import kotlin.Suppress;
+
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "MainActivity";
+    private  MyDatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.v(TAG, "This is a Verbose log ");
-        Log.d(TAG, "This is a Debug log");
-        Log.i(TAG, "This is an Info log");
-        Log.i(TAG, "This is an Info log");
-        Log.e(TAG, "This is an error log");
+        dbHelper = new MyDatabaseHelper(this);
 
-        Button button1 = (Button) findViewById(R.id.button);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "Button 1 click!");
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
-            }
-        });
+        dbHelper.deleteAllData();
+
+        dbHelper.insertData("John", 25);
+        dbHelper.insertData("Luke", 24);
+
+        getData();
+
+        dbHelper.deleteData(2);
+
+        getData();
+
+        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("name", "John");
+        editor.putInt("age", 26);
+        editor.putBoolean("is_student", true);
+        editor.commit();
+
+        String name = prefs.getString("name", "");
+        int age = prefs.getInt("age", 0);
+        boolean isStudent = prefs.getBoolean("is_student", false);
+
+        Log.d("MainActivity", name);
+        Log.d("MainActivity", String.valueOf(age));
+        Log.d("MainActivity", String.valueOf(isStudent));
+
+        editor.remove("name");
+        editor.apply();
+
+        name = prefs.getString("name", "");
+        age = prefs.getInt("age", 0);
+        isStudent = prefs.getBoolean("is_student", false);
+
+        Log.d("MainActivity", name);
+        Log.d("MainActivity", String.valueOf(age));
+        Log.d("MainActivity", String.valueOf(isStudent));
     }
+
+    @SuppressLint("Range")
+    private void getData() {
+        Cursor cursor = dbHelper.getData();
+        Log.d("MainActivity", "============START===========");
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                int age = cursor.getInt(cursor.getColumnIndex("age"));
+
+                Log.d("MainActivity", "Record Retrieved with ID: " + id + ", name: " + name + ", age: " + age);
+            }
+        } else {
+
+            Log.d("MainActivity", "No Records found.");
+        }
+        Log.d("MainActivity", "============END===========");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+
+        if (dbHelper != null){
+            dbHelper.close();
+        }
+
+    }
+
 }
