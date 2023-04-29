@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         getData();
 
+        dbHelper.updateData(2, "Mark", 26);
+
+        getData();
+
         dbHelper.deleteData(2);
 
         getData();
